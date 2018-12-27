@@ -29,7 +29,6 @@
 2. ### Default export not allowed
 
 > ApiService.js
-
 ```javascript
   export const class ApiService {
     /* ... */
@@ -37,7 +36,6 @@
 ```
 
 > Home.js
-
 ```javascript
   import { ApiService } from '../ApiService'; 
 ```
@@ -119,7 +117,7 @@
 ```
 > Use:
 ```javascript 
-  const object {
+  const object = {
    isOk: () => /* ... */,
    isCreated: () => /* ... */,
    isUpdated: () => /* ... */
@@ -182,7 +180,7 @@
 
 15. ### For helper functions prefer to use classes instead of several functions
 
-```javscript
+```javascript
   class TimeSlotHelper {
     formatTimeSlots = () => /* ... */
     updateTimeSlots = () => /* ... */
@@ -195,9 +193,6 @@
 > Only return untouched something
 ```javascript
   getSomething = () => /* ... */
-
-  formatSomething = () => /* ... */
-
 ```
 
 > Formatting something
@@ -205,7 +200,7 @@
   formatSomething = () => /* ... */
 ```
 
-17. ### Use async/await instead of Promise
+17. ### Use `async/await` instead of `.then`
 
 ```javascript
   request = async () => {
