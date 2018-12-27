@@ -1,6 +1,20 @@
-# Codempire Javascript code style guide
+# Codempire Javascript Code Style Guide
 
-## 1. Javascript
+![GitHub license](https://cocoapod-badges.herokuapp.com/l/VegaScrollFlowLayout/badge.(png|svg))
+[![Email](https://img.shields.io/badge/contact-Codempire_-blue.svg?style=flat)](mailto:info@codempire.io)
+
+Made by [Codempire](http://codempire.io/)
+
+# Table of Contents
+1. [Javascript](#javascript)
+2. [React Ecosystem](#react-ecosystem)
+3. [Typings](#typings)
+4. [Tools](#tools)
+5. [Contact Us](#contact-us)
+6. [License](#license)
+
+
+## Javascript
 
 1. ### Import Order
 
@@ -217,11 +231,11 @@
 18. ### All `.js` files should not exceed 200 lines of code
 
 
-## 2.React Ecosystem
+## React Ecosystem
 
-## 3. Typings
+## Typings
 
-## 4. Instruments
+## Tools
 
 For developing with JS with use next code-style insturments. 
 
@@ -234,3 +248,13 @@ For developing with JS with use next code-style insturments.
   2. ### Eslint/Tslint 
  
    > Linters which didn't allow you to push your changes with non-compliance of `this style guide`
+   
+# Contact Us
+
+You can always contact us via info@codempire.io. We are open for any inquiries regarding our guides, libraries and controls, new open-source projects and other ways of contributing to the community. If you have used our stuff in your project we would be extremely happy if you write us your feedback and let us know about it!
+   
+# License
+
+The MIT License (MIT)
+
+Copyright © 2018 Codempire
