@@ -1,6 +1,6 @@
 # Typings
 
-Return to content [Table of Contents](../README.md)
+[Return to Table of Contents](../README.md)
 
 ## 1. Types `any`, `array` and `object` not allowed
 
@@ -26,7 +26,7 @@ interface IUser {
 type TAnswer = "Yes" | "No";
 ```
 
-## 4. Class or Component interface should containt it name
+## 4. Class or Component interface should contain it name
 
 ```typescript
 interface IApiService {
@@ -67,7 +67,7 @@ interface IData {
 type TLevel = 1 | 2;
 
 interface IData {
-  level: ILevel;
+  level: TLevel;
 }
 ```
 
@@ -89,7 +89,7 @@ interface IData {
 }
 ```
 
-## 8. Always use `private`, `public` and `protected` in classes or component
+## 8. Always use `private`, `public` and `protected` in class or component
 
 ```typescript
 class Api {

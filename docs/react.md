@@ -1,8 +1,81 @@
 # React Ecosystem
 
-Return to content [Table of Contents](../README.md)
+[Return to Table of Contents](../README.md)
 
 ## 1. Folder Structure
+
+> Assets - contains images, fonts, icons
+
+```
+    /assets
+      /img
+        bg.png
+      /fonts
+        Arial.woff
+      /icons
+        avatar.svg
+```
+
+> Component - contains components (with local constants, typings) that are shared over several scenes;
+
+```
+   /components
+      /Spinner
+        Spinner.tsx
+        Spinner.test.tsx
+        constants.ts
+        index.ts
+      /Modal
+```
+
+> Constants - contains constants that are shared over several scenes, components, services...
+
+```
+    /constants
+      colors.ts
+      routes.ts
+```
+
+> Scenes - contains all files according to screen - components, constants, typings, reducers, actions, etc.
+
+```
+    /scenes
+      /Home
+        /components
+          /Header
+          /Footer
+        actions.ts
+        Home.tsx
+        reducer.ts
+        constatns.ts
+        index.ts
+      /Auth
+      /User
+```
+
+> Services - contains application services: api classes, helper functions, redux
+
+```
+
+    /services
+      /api
+        auth-api.ts
+      /helpers
+        time-slots.ts
+      /redux
+        middleware.ts
+        store.ts
+```
+
+> Typings - containts shared typings
+
+```
+    /typings
+      api.ts
+      items.ts
+```
+
+> `index.ts` file serves as an export point. We should import files only from it.
 
 ## 2. Don't use anonymus function in events props
 
@@ -28,7 +101,7 @@ export class Home extends PureComponent {
 export const User = props => <User {...props} />;
 ```
 
-## 4. Divide complex render function to several rener functions
+## 4. Divide complex render function to several functions
 
 > Instead of
 
@@ -70,6 +143,10 @@ componentDidMount () {
 > Use
 
 ```javascript
+import { api } from '@services/api';
+
+/* ... */
+
 componentDidMount () {
   this.getData()
 }
@@ -128,7 +205,7 @@ export function createReducer(initialState, handlers) {
 }
 ```
 
-## 8. Always declare type of props via Typescript
+## 8. Always add typing to component props
 
 ```typescript
 interface IHome {

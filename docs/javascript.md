@@ -1,6 +1,6 @@
 # Javascript
 
-Return to content [Table of Contents](../README.md)
+[Return to Table of Contents](../README.md)
 
 ## 1. All `.js` files should not exceed 200 lines of code
 

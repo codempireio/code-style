@@ -1,6 +1,6 @@
 # Tools
 
-Return to content [Table of Contents](../README.md)
+[Return to Table of Contents](../README.md)
 
 ## 1. Prettier
 
