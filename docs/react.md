@@ -217,3 +217,34 @@ export class Home extends React.Component<IHome> {
   /* ... */
 }
 ```
+
+## 9. Don't use constructor in React Component
+
+> Instead of
+
+```javascript
+class Component extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isOpen: false
+    };
+
+    this.onClick = this.onClick.bind(this);
+  }
+}
+```
+
+> Use
+
+```javascript
+class Component extends React.Component {
+  state = {
+    isOpen: false
+  };
+
+  onClick = () => {
+    /* ... */
+  };
+}
+```

@@ -225,3 +225,26 @@ request = async () => {
   }
 };
 ```
+
+## 19. Always extract strings from code to separate strings constants file for helping with i18n
+
+> Instead of
+
+```javascript
+    render() {
+      <div>Lorem Ipsum</div>
+    }
+```
+
+> Use
+
+```javascript
+  import { strings } from './constants';
+
+    /* ... */
+
+
+  render() {
+    <div>{string.info}</div>
+  }
+```
