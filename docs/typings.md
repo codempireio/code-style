@@ -123,3 +123,22 @@ declare module "data" {
   export function parseData(options: IPayload): void;
 }
 ```
+
+## 9. Type annotation should be on the top of the file
+
+```typescript
+  interface IService {
+    getInfo: (token: string) => Promise<IData>;
+  }
+```
+
+## 10. When using React always add typing for React Children
+
+```typescript
+  interface IComponent {
+    children: ReactNode | ReactChild | ReactElement
+  }
+
+  Also it could be primitive `string | number | boolean`, array `Array<T>` or `null | never | undefined`
+
+```

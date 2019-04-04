@@ -136,7 +136,7 @@ if (isOk) {
   }
 ```
 
-## 11. Always use object desctruction
+## 11. Always use object destruction
 
 ```javascript
 const { user, options } = response;
@@ -144,7 +144,7 @@ const { user, options } = response;
 const { name, surname, photo } = user;
 ```
 
-## 12. Name variables to fit object shorcut
+## 12. Name variables to fit object shortcut
 
 ```javascript
 createUser = options => {

@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "lint": "tslint 'src/**/*.{ts,tsx}'",
+    "precommit": "lint-staged",
+    "prettier": "prettier --config ./.prettierrc --write  \"./src/**/*.{ts,tsx}\""
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "yarn prettier",
+      "yarn lint",
+      "git add"
+    ]
+  }
+}

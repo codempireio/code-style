@@ -20,12 +20,12 @@
 
 ```
    /components
-      /Spinner
-        Spinner.tsx
-        Spinner.test.tsx
+      /spinner
+        spinner.tsx
+        spinner.test.tsx
         constants.ts
         index.ts
-      /Modal
+      /modal
 ```
 
 > Constants - contains constants that are shared over several scenes, components, services...
@@ -40,17 +40,17 @@
 
 ```
     /scenes
-      /Home
+      /home
         /components
-          /Header
-          /Footer
+          /header
+          /footer
         actions.ts
-        Home.tsx
+        home.tsx
         reducer.ts
-        constatns.ts
+        constants.ts
         index.ts
-      /Auth
-      /User
+      /auth
+      /user
 ```
 
 > Services - contains application services: api classes, helper functions, redux
@@ -67,7 +67,7 @@
         store.ts
 ```
 
-> Typings - containts shared typings
+> Typings - contains shared typings
 
 ```
     /typings
@@ -77,7 +77,7 @@
 
 > `index.ts` file serves as an export point. We should import files only from it.
 
-## 2. Don't use anonymus function in events props
+## 2. Don't use anonymous function in events props
 
 > Instead of
 
@@ -247,4 +247,19 @@ class Component extends React.Component {
     /* ... */
   };
 }
+```
+
+## 10. All files should be named in same syntax
+
+`tsx` or `jsx` will help us to understand if it's component file
+
+```
+  /
+    home-button.tsx
+    home.tsx
+    service.ts
+    constants.ts
+    scene-cases.ts
+    index.ts
+
 ```
