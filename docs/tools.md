@@ -32,7 +32,11 @@
 
 [Run linters against staged git files and don't let 💩 slip into your code base!](https://www.npmjs.com/package/lint-staged)
 
-#### package.json
+```sh
+  npm i -D lint-staged prettier tslint
+```
+
+### package.json
 
 ```json
   "scripts": {

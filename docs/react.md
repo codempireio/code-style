@@ -23,7 +23,7 @@
       /spinner
         spinner.tsx
         spinner.test.tsx
-        constants.ts
+        spinner.constants.ts
         index.ts
       /modal
 ```
@@ -34,20 +34,26 @@
     /constants
       colors.ts
       routes.ts
+      config.ts
 ```
 
-> Scenes - contains all files according to screen - components, constants, typings, reducers, actions, etc.
+> Screens - contains all files according to - components, constants, typings, api etc.
 
 ```
-    /scenes
+    /screens
       /home
-        /components
-          /header
-          /footer
-        actions.ts
+        /header
+          header.tsx
+          index.ts
+        /footer
+          footer.tsx
+          footer.styles.ts
+          index.ts
         home.tsx
-        reducer.ts
-        constants.ts
+        home.api.ts
+        home.constants.ts
+        home.state.ts
+        home.typing.ts
         index.ts
       /auth
       /user
@@ -59,7 +65,9 @@
 
     /services
       /api
-        auth-api.ts
+        api-service.ts
+        api-service.test.ts
+        api-service.constants.ts
       /helpers
         time-slots.ts
       /redux
@@ -75,20 +83,42 @@
       items.ts
 ```
 
+> So, globally it will looks like
+
+```
+  /node_modules
+  /public
+  /src
+    /assets
+    /constants
+    /components
+    /screens
+    /typings
+    index.ts
+```
+
 > `index.ts` file serves as an export point. We should import files only from it.
 
 ## 2. Don't use anonymous function in events props
 
+### It influence badly on app performance
+
 > Instead of
 
 ```javascript
-<Button onClick={() => this.props.callback()} />
+<Button onClick={() => this.props.onAction(this.props.id)} />
 ```
 
 > Use
 
 ```javascript
-<Button onClick={this.method} />
+  method () {
+    this.props.onAction(this.props.id)
+  }
+
+  /* ... */
+
+  <Button onClick={this.method} />
 ```
 
 ## 3. Use Pure Component or Stateless Component if possible
@@ -101,7 +131,7 @@ export class Home extends PureComponent {
 export const User = props => <User {...props} />;
 ```
 
-## 4. Divide complex render function to several functions
+## 4. Divide complex render function to several functions or move it to another components
 
 > Instead of
 
@@ -121,8 +151,8 @@ render () {
 ```javascript
 render () {
   <Component>
-    {this.renderUsers()}
-    {this.renderList()}
+    <UserList users={data.users} />
+    <Info currentUser={this.currentUser()} />
   </Component>
 }
 ```
@@ -150,6 +180,7 @@ import { api } from '@services/api';
 componentDidMount () {
   this.getData()
 }
+
 getData = async () => {
   const data = await api.getData
   /* ... */
@@ -249,7 +280,7 @@ class Component extends React.Component {
 }
 ```
 
-## 10. All files should be named in same syntax
+## 10. All files should be named in `kebab-case` syntax
 
 `tsx` or `jsx` will help us to understand if it's component file
 
@@ -257,9 +288,8 @@ class Component extends React.Component {
   /
     home-button.tsx
     home.tsx
-    service.ts
-    constants.ts
-    scene-cases.ts
+    home.api.ts
+    home.constants.ts
     index.ts
 
 ```

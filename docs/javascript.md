@@ -87,7 +87,7 @@ import { Component } from "../Home";
 const isCompleted = method();
 ```
 
-## 7. If statement should be as small as possible
+## 7. Code inside `if` statement should be as small as possible
 
 ```javascript
 method = (isCompleted, options) => {
@@ -111,17 +111,20 @@ return isCompleted ? method() : null;
 const isCompleted = status === 500 && !isLoading && !isError;
 ```
 
-## 10. Use hashmap instead of nesting `if`
+## 10. Use object mapping instead of nesting `if`
 
 > Instead of:
 
 ```javascript
-if (isOk) {
-  if (status === 200) {
-    /* ... */
-  } else if (status === 201) {
-    /* ... */
-  }
+const response = await api.fetchData();
+
+if (response.message === "saved") {
+  /* ... */
+}
+if (response.message === "updated") {
+  /* ... */
+}
+if (response.message === "error") {
   /* ... */
 }
 ```
@@ -129,14 +132,18 @@ if (isOk) {
 > Use:
 
 ```javascript
-  const object = {
-   isOk: () => /* ... */,
-   isCreated: () => /* ... */,
-   isUpdated: () => /* ... */
+  const responseHandleMap = {
+   saved: () => /* ... */,
+   updated: () => /* ... */,
+   error: () => /* ... */
   }
+  /* ... */
+  const response = await api.fetchData();
+  responseHandleMap[response.message]();
+
 ```
 
-## 11. Always use object destruction
+## 11. Always use `object destruction`
 
 ```javascript
 const { user, options } = response;
@@ -167,15 +174,21 @@ const GOOGLE_KEY = "123123123123";
 ## 14. Always extract string and number to constants (local or global)
 
 ```javascript
-const MODAL_NAME = "Open Modal";
-const MODAL_TEXT = "Do you ...?";
+export const strings = {
+  modal: {
+    name: "Save Data",
+    info: "Do you ...?"
+  }
+};
 
 /* ... */
+import { strings } from "@constants/strings";
 
-createModal(MODAL_NAME, MODAL_TEXT);
+const { name, info } = strings.modal;
+createModal(name, info);
 ```
 
-## 15. Class method should be defined only in one syntax
+## 15. Class method should be written with arrow functions
 
 ```javascript
 class Api {
@@ -204,13 +217,19 @@ class Api {
 > Only return untouched something
 
 ```javascript
-  getSomething = () => /* ... */
+  getData = () => /* ... */
 ```
 
 > Formatting something
 
 ```javascript
-  formatSomething = () => /* ... */
+  formatData = () => /* ... */
+```
+
+> Than you can combine them
+
+```javascript
+const data = formatData(getData())
 ```
 
 ## 18. Use `async/await` instead of `.then`
@@ -224,27 +243,4 @@ request = async () => {
     /* ... */
   }
 };
-```
-
-## 19. Always extract strings from code to separate strings constants file for helping with i18n
-
-> Instead of
-
-```javascript
-    render() {
-      <div>Lorem Ipsum</div>
-    }
-```
-
-> Use
-
-```javascript
-  import { strings } from './constants';
-
-    /* ... */
-
-
-  render() {
-    <div>{string.info}</div>
-  }
 ```
