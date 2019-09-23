@@ -84,7 +84,7 @@ import { Component } from "../Home";
 ## 6. Boolean variables should begin from `is`
 
 ```javascript
-const isCompleted = method();
+const isCompleted = true;
 ```
 
 ## 7. Code inside `if` statement should be as small as possible
@@ -108,7 +108,8 @@ return isCompleted ? method() : null;
 ## 9. Move complex boolean calculation to variable
 
 ```javascript
-const isCompleted = status === 500 && !isLoading && !isError;
+const isUserValid = user && user.name
+const isCompleted = isUserValid && status === 500 && !isLoading && !isError;
 ```
 
 ## 10. Use object mapping instead of nesting `if`
