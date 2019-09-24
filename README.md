@@ -8,11 +8,10 @@ Made by [Codempire](http://codempire.io/)
 ## Table of Contents
 
 1. [Javascript](docs/javascript.md)
-2. [React Ecosystem](docs/react.md)
-3. [Typings](docs/typings.md)
-4. [Useful Tools for development](docs/tools.md)
-5. [Contact Us](#contact-us)
-6. [License](#license)
+2. [React](docs/react.md)
+3. [Typescript](docs/typings.md)
+4. [Tools](docs/tools.md)
+
 
 ## Contact Us
 
