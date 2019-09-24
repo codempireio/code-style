@@ -6,7 +6,7 @@
 
 ## Table of Contents
 
-1. [Files](react/files.md)
-2. [General](react/general.md)
-3. [Hooks](react/hooks.md)
-4. [Redux](react/redux.md)
+1. [Files](files.md)
+2. [General](general.md)
+3. [Hooks](hooks.md)
+4. [Redux](redux.md)

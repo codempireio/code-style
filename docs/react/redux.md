@@ -2,7 +2,7 @@
 
 [Return to Table of Contents](../../README.md)
 
-[Return to React](../react.md)
+[Return to React](README.md)
 
 > We don't like using redux. But if had to we're using next rules
 

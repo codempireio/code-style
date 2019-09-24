@@ -2,10 +2,16 @@
 
 [Return to Table of Contents](../../README.md)
 
-[Return to React](../react.md)
+[Return to React](README.md)
 
 > Structuring files in react is essential point of quality code!
 > We're using next rules for keeping our code more maintainable
+
+## Table of Contents
+
+1. [File Naming](#file-naming)
+2. [Folder Structure](#folder-structure)
+3. [Constants folder](#constants-folder)
 
 ## File Naming
 
@@ -162,4 +168,58 @@
     /screens
     /typings
     index.ts
+```
+
+## Constants folder
+
+> It's a good place to keep your constants that you're using in project
+
+### `config.ts`
+
+> your application config data: base api url, host name, google credentials, etc
+
+```typescript
+export const BASE_URL = 'api.com';
+export const AUTH_URL = 'identity.api.com';
+
+export const Env = {
+  isProduction: process.env.NODE_ENV === 'production',
+};
+```
+
+### `date-formats.ts`
+
+> moment formats that you're using across application
+
+```typescript
+export const HOURS_FORMAT = 'h a';
+export const DATE_FORMAT = 'dddd Do MMMM';
+export const DATE_YEAR_FORMAT = 'dddd Do MMMM, YYYY';
+```
+
+### `locales/` folder
+
+> here you can keep your project string in different locales (en.ts, ar.ts, fr.ts) or single languages string that you can easily update during development
+
+### `images.ts`
+
+> here you can export your images from assets
+
+```typescript
+export const images = {
+  logo: require('../assets/images/logo.png'),
+  background: require('../assets/images/background.png'),
+}
+```
+
+### `routes.ts`
+
+> routes of our application
+
+```typescript
+export enum ROUTES {
+  Home = 'Home',
+  Auth = 'Auth',
+  Settings = 'Settings',
+}
 ```

@@ -8,10 +8,9 @@ Made by [Codempire](http://codempire.io/)
 ## Table of Contents
 
 1. [Javascript](docs/javascript.md)
-2. [React](docs/react.md)
+2. [React](docs/react/README.md)
 3. [Typescript](docs/typings.md)
 4. [Tools](docs/tools.md)
-
 
 ## Contact Us
 

@@ -2,7 +2,7 @@
 
 [Return to Table of Contents](../../README.md)
 
-[Return to React](../react.md)
+[Return to React](README.md)
 
 > General rules for working with react
 
@@ -136,4 +136,36 @@ class Component extends React.Component {
     };
   }
 }
+```
+
+## Update state data with option function
+
+> in state file
+
+```typescript
+const onUpdateUser = (value: string, option: string) => {
+  setState(s => ({
+    ...s,
+    user: {
+      ...s.user,
+      [option]: value
+    }
+  }));
+};
+```
+
+> in input component
+
+```typescript
+interface IProps {
+  option: string;
+  value: string;
+  onUpdateUser: (value: string, option: string) => void;
+}
+
+/* ... */
+
+const onChangeText = (text: string) => {
+  props.onUpdateUser(text, props.option)
+};
 ```
