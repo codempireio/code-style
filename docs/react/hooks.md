@@ -204,3 +204,45 @@ export const useUserContextState = () => {
   };
 };
 ```
+
+### app.tsx
+
+> Here's our root component where we use provider
+
+```typescript
+import * as React from "react";
+
+import { User } from "screens/user";
+
+import { UserProvider } from "services/context/user";
+
+export const App = () => {
+  return (
+    <UserProvider>
+      <User />
+    </UserProvider>
+  );
+};
+```
+
+### user.tsx
+
+> In child component we will use values of context with `useContext` hook
+
+```typescript
+import * as React from "react";
+
+import { User } from "./user";
+
+import { UserContext } from "services/context/user";
+
+export const User = () => {
+  const { user } = useContext(UserContext);
+
+  return (
+    <div>
+      <Avatar img={user.img} />
+    </div>
+  );
+};
+```
