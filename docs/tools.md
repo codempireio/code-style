@@ -1,9 +1,8 @@
 # Tools
 
-
 [Return to Table of Contents](../README.md)
 
-## Must Have Tools
+## Must-Have Tools
 
 > Useful tools that we commonly to using when developing projects in Codempire!
 
@@ -35,7 +34,7 @@
 
 ### - Pre-commit hook tools
 
-[Run linters against staged git files and don't let 💩 slip into your code base!](https://www.npmjs.com/package/lint-staged)
+[Run linters against staged git files and don't let 💩 slip into your codebase!](https://www.npmjs.com/package/lint-staged)
 
 ```sh
   npm i -D lint-staged prettier tslint
@@ -62,7 +61,7 @@
 
 [Promise based HTTP client for the browser and node.js](https://www.npmjs.com/package/axios)
 
-> It's best feature is possibility to modify XHR with interceptors
+> It's the best feature is a possibility to modify XHR with interceptors
 
 ```typescript
 const request = (url: string, method: string, body: {}) => {
@@ -103,7 +102,7 @@ const request = (url: string, method: string, body: {}) => {
 
 ### - react-native-vector-icons
 
-[Customizable Icons for React Native with support for NavBar/TabBar/ToolbarAndroid, image source and full styling.](https://www.npmjs.com/package/react-native-vector-icons)
+[Customizable Icons for React Native with support for NavBar/TabBar/ToolbarAndroid, image source, and full styling.](https://www.npmjs.com/package/react-native-vector-icons)
 
 ### - react-native-dropdownalert
 

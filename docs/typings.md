@@ -26,7 +26,7 @@ interface IUser {
 type TAnswer = "Yes" | "No";
 ```
 
-## 4. Class or Component interface should contain it name
+## 4. Class or Component interface should contain its name
 
 ```typescript
 interface IApiService {
@@ -71,7 +71,7 @@ interface IData {
 }
 ```
 
-## 7. Use `?` when declaring non certain types
+## 7. Use `?` when declaring noncertain types
 
 > Instead of
 
@@ -111,7 +111,7 @@ import { ICommonData } from "@typings/data";
 import { ILocalInfo } from "./typings";
 ```
 
-## 8. Create `global.d.ts` file if you need to override library types or create types for untyped module
+## 8. Create `global.d.ts` file if you need to override library types or create types for an untyped module
 
 ```typescript
 declare module "data" {
@@ -127,18 +127,15 @@ declare module "data" {
 ## 9. Type annotation should be on the top of the file
 
 ```typescript
-  interface IService {
-    getInfo: (token: string) => Promise<IData>;
-  }
+interface IService {
+  getInfo: (token: string) => Promise<IData>;
+}
 ```
 
 ## 10. When using React always add typing for React Children
 
 ```typescript
-  interface IComponent {
-    children: ReactNode | ReactChild | ReactElement
-  }
-
-  Also it could be primitive `string | number | boolean`, array `Array<T>` or `null | never | undefined`
-
+interface IComponent {
+  children: ReactNode | ReactChild | ReactElement;
+}
 ```
