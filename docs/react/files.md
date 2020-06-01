@@ -19,12 +19,11 @@
 > `.tsx` or `.jsx` will help us to understand if it's component file
 
 ```
-  location-service.js
+  users-panel.api.js
   events-filter.jsx
 
-  home.service.ts
   home.tsx
-  home-header.tsx
+  home-header.state.tsx
 ```
 
 > Secondary files (helpers, constants, services) in same folder should name with `.`
@@ -45,6 +44,9 @@
     home.state.ts
     home.tsx
     home.constants.ts
+    home.actions.ts
+    home.reducer.ts
+    home.saga.ts
     index.ts
 
     home-header.tsx
@@ -59,7 +61,7 @@
 
 ### `src/screens`
 
-> Feature folder that contains all files according to - components, constants, typings, api etc.
+> Feature folder that contains all files according to - components, constants, typings, api, strings, redux info (reducers, actions, saga) etc.
 > `index.ts` file inside each folder is using as an export point. We should import files only from it.
 
 ```
@@ -73,9 +75,12 @@
           footer.styles.ts
           index.ts
         home.tsx
+        home.actions.ts
         home.api.ts
         home.constants.ts
+        home.reducer.ts
         home.state.ts
+        home.strings.ts
         home.typing.ts
         index.ts
       /auth
@@ -88,12 +93,13 @@
 
 ```
    /components
-      /spinner
-        spinner.tsx
-        spinner.test.tsx
-        spinner.constants.ts
-        index.ts
       /modal
+        modal.tsx
+        modal.test.tsx
+        modal.constants.ts
+        modal.strings.ts
+        index.ts
+      /spinner
       text.tsx
 ```
 
@@ -103,15 +109,16 @@
 
 ```
     /constants
-      date-formats.ts
+      date.ts
       routes.ts
+      env.ts
       config.ts
       icons.ts
 ```
 
 ### `src/services`
 
-> Services - contains application services: api classes, helper functions, redux
+> Services - contains application services: api classes, helper functions, redux setup
 
 ```
 
@@ -120,9 +127,16 @@
         api-service.ts
         api-service.test.ts
         api-service.constants.ts
+        index.ts
       /helpers
         time-slots.ts
+      store.ts
+      storage-service.ts
       location-service.ts
+      /redux
+        store.ts
+        utils.ts
+        index.ts
 ```
 
 ### `src/typings`
@@ -131,7 +145,7 @@
 
 ```
     /typings
-      index.d.ts
+      index.d.ts // global typings
       api.ts
       items.ts
 ```
@@ -179,11 +193,11 @@
 > your application config data: base api url, host name, google credentials, etc
 
 ```typescript
-export const BASE_URL = 'api.com';
-export const AUTH_URL = 'identity.api.com';
+export const BASE_URL = "api.com";
+export const AUTH_URL = "identity.api.com";
 
 export const Env = {
-  isProduction: process.env.NODE_ENV === 'production',
+  isProduction: process.env.NODE_ENV === "production",
 };
 ```
 
@@ -192,9 +206,9 @@ export const Env = {
 > moment formats that you're using across application
 
 ```typescript
-export const HOURS_FORMAT = 'h a';
-export const DATE_FORMAT = 'dddd Do MMMM';
-export const DATE_YEAR_FORMAT = 'dddd Do MMMM, YYYY';
+export const HOURS_FORMAT = "h a";
+export const DATE_FORMAT = "dddd Do MMMM";
+export const DATE_YEAR_FORMAT = "dddd Do MMMM, YYYY";
 ```
 
 ### `locales/` folder
@@ -207,9 +221,9 @@ export const DATE_YEAR_FORMAT = 'dddd Do MMMM, YYYY';
 
 ```typescript
 export const images = {
-  logo: require('../assets/images/logo.png'),
-  background: require('../assets/images/background.png'),
-}
+  logo: require("../assets/images/logo.png"),
+  background: require("../assets/images/background.png"),
+};
 ```
 
 ### `routes.ts`
@@ -218,8 +232,8 @@ export const images = {
 
 ```typescript
 export enum ROUTES {
-  Home = 'Home',
-  Auth = 'Auth',
-  Settings = 'Settings',
+  Home = "Home",
+  Auth = "Auth",
+  Settings = "Settings",
 }
 ```

@@ -4,8 +4,6 @@
 
 [Return to React](README.md)
 
-> We don't like using redux. But if had to we're using next rules
-
 ## Extract complex logic from reducer to helper or middleware
 
 > Instead of

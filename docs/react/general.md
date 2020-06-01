@@ -28,6 +28,27 @@
   <Button onClick={this.method} />
 ```
 
+## Create styled objects when working with styled-components
+
+> component.styles.ts
+
+```javascript
+import styled from "styled-components";
+
+export const ComponentStyled = {
+  Wrapper: styled.div`
+    display: flex;
+  `,
+  Modal: styled.div`
+    width: 240px;
+    height: 250px;
+  `,
+  Text: styled.p`
+    font-size: 16px;
+  `,
+};
+```
+
 ## Use Pure Component or Stateless Component if possible
 
 ```javascript
@@ -35,7 +56,7 @@ export class Home extends PureComponent {
   /* ... */
 }
 
-export const User = props => <User {...props} />;
+export const User = (props) => <User {...props} />;
 ```
 
 ## Divide complex render function to several functions or move it to another components
@@ -103,7 +124,7 @@ class Component extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isOpen: false
+      isOpen: false,
     };
 
     this.onClick = this.onClick.bind(this);
@@ -116,7 +137,7 @@ class Component extends React.Component {
 ```javascript
 class Component extends React.Component {
   state = {
-    isOpen: false
+    isOpen: false,
   };
 
   onClick = () => {
@@ -144,12 +165,12 @@ class Component extends React.Component {
 
 ```typescript
 const onUpdateUser = (value: string, option: string) => {
-  setState(s => ({
+  setState((s) => ({
     ...s,
     user: {
       ...s.user,
-      [option]: value
-    }
+      [option]: value,
+    },
   }));
 };
 ```
@@ -166,6 +187,6 @@ interface IProps {
 /* ... */
 
 const onChangeText = (text: string) => {
-  props.onUpdateUser(text, props.option)
+  props.onUpdateUser(text, props.option);
 };
 ```

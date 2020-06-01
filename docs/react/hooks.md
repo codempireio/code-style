@@ -136,7 +136,7 @@ export const UserContext = React.createContext<IUserContext>({
   },
   clearUser: () => {
     return;
-  }
+  },
 });
 
 interface IUserProvider {
@@ -151,7 +151,7 @@ export const UserProvider = (props: IUserProvider) => {
       value={{
         user,
         setUser,
-        clearUser
+        clearUser,
       }}
     >
       {props.children}
@@ -179,7 +179,7 @@ export interface IUserContext extends IUserContextData {
 }
 
 const initialState: IUserContextData = {
-  user: null
+  user: null,
 };
 
 export const useUserContextState = () => {
@@ -187,20 +187,20 @@ export const useUserContextState = () => {
 
   const setUser = (user: IUser | null) => {
     setState(() => ({
-      user
+      user,
     }));
   };
 
   const clearUser = () => {
     setState(() => ({
-      user: null
+      user: null,
     }));
   };
 
   return {
     ...state,
     setUser,
-    clearUser
+    clearUser,
   };
 };
 ```

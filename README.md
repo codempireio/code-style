@@ -1,7 +1,7 @@
 # Codempire Javascript Code Style Guide
 
 ![GitHub license](<https://cocoapod-badges.herokuapp.com/l/VegaScrollFlowLayout/badge.(png|svg)>)
-![Email](https://img.shields.io/badge/contact-Codempire_-blue.svg?style=flat)](mailto:sales@codempire.io)
+[![Email](https://img.shields.io/badge/contact-CODEMPIRE-blue.svg?style=flat)](mailto:sales@codempire.io)
 
 Made by [Codempire](http://codempire.io/)
 
@@ -21,4 +21,4 @@ You can always contact us via sales@codempire.io. We are open to any inquiries r
 
 The MIT License (MIT)
 
-Copyright © 2019 Codempire
+Copyright © 2020 Codempire

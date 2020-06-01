@@ -108,7 +108,7 @@ return isCompleted ? method() : null;
 ## 9. Move complex boolean calculation to variable
 
 ```javascript
-const isUserValid = user && user.name
+const isUserValid = user && user.name;
 const isCompleted = isUserValid && status === 500 && !isLoading && !isError;
 ```
 
@@ -155,12 +155,12 @@ const { name, surname, photo } = user;
 ## 12. Name variables to fit object shortcut
 
 ```javascript
-createUser = options => {
+createUser = (options) => {
   const { name, photo } = api.request({ options });
 
   return {
     name,
-    photo
+    photo,
   };
 };
 ```
@@ -178,8 +178,8 @@ const GOOGLE_KEY = "123123123123";
 export const strings = {
   modal: {
     name: "Save Data",
-    info: "Do you ...?"
-  }
+    info: "Do you ...?",
+  },
 };
 
 /* ... */
@@ -193,7 +193,7 @@ createModal(name, info);
 
 ```javascript
 class Api {
-  request = options => {
+  request = (options) => {
     /* ... */
   };
 
@@ -230,7 +230,7 @@ class Api {
 > Than you can combine them
 
 ```javascript
-const data = formatData(getData())
+const data = formatData(getData());
 ```
 
 ## 18. Use `async/await` instead of `.then`
