@@ -10,8 +10,9 @@ Made by [Codempire](http://codempire.io/)
 1. [Javascript](docs/javascript.md)
 2. [React](docs/react/README.md)
 3. [Typescript](docs/typings.md)
-4. [Tools](docs/tools.md)
-5. [Git Flow](docs/git.md)
+4. [Development](docs/development.md)
+5. [Tools](docs/tools.md)
+6. [Git Flow](docs/git.md)
 
 ## Contact Us
 
