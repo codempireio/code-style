@@ -2,9 +2,17 @@
 
 [Return to Table of Contents](../README.md)
 
-## 1. All `.js` files should not exceed 200 lines of code
+## Table of Contents 🚀
 
-## 2. Import Order
+  - [**Modules**](#modules)
+  - [**Naming**](#naming)
+  - [**Code Structure**](#code-structure)
+
+## **Modules**
+
+- ### **Follow next import order**
+
+> This spaces allow you quicker understand what files use your module
 
 ```javascript
 // node_modules
@@ -24,70 +32,206 @@ import { IHome } from "./scenes/Home/typings";
 import { ISendMessageResponse } from "../services/api/typings";
 // files
 import "./scenes/Home.css";
-import Logo from "../assets/icons/logo.svg";
 ```
 
-## 3. Default export not allowed
+- ### **Don't use default export**
 
-> ApiService.js
+> Default export allows confusions in codebase
+> To avoid this don't use it
 
 ```javascript
-  export const class ApiService {
-    /* ... */
-  }
+import { HomeApi } from "./home.api";
 ```
 
-> Home.js
+- ### **Use `index.js` for export module parts to another**
+
+**Instead of** 🤨
 
 ```javascript
-import { ApiService } from "../ApiService";
+import { homeActions } from "../../home/home-utils/home.actions";
+import { routeUtils } from "../../../utils/route.utils";
+
+import { homeTypes } from "../../home/home.typings";
 ```
 
-## 4. Use `index.js` with only export declaration to ease import
-
-> Home/Home.js
+**You will have** 🥰
 
 ```javascript
- export const Component = () => /* ... */
+import { homeActions, homeTypes } from "../../home";
+import { routeUtils } from "../../../utils";
 ```
 
-> Home/index.js
+> Put everything that you want to share to index.js
 
 ```javascript
-export * from "./Component";
+export * from "./home";
+export { homeActions } from "./home-utils/home-actions";
 ```
 
-> User/User.js
+- ### **Combine utils/api functions under one object**
+
+**Instead of** 🤨
 
 ```javascript
-import { Component } from "../Home";
+// utils.js
+const formatTimeSlots = () => {};
+const updateTimeSlots = () => {};
+const createTimeSlots = () => {};
+
+//file.js
+
+import { formatTimeSlots, createTimeSlots, updateTimeSlots } from "./utils";
 ```
 
-## 5. Setup module name mapper in webpack, tsconfig, jest to ease import
-
-> Instead of
+**You will have** 🥰
 
 ```javascript
-  import { User } from '../../scenes/Account/User';
-  import { THEME_COLOR } '../../constants/theme';
-  import { getUser } '../../services/userServices';
+// utils.js
+const utils = {
+  formatTimeSlots: () => {},
+  updateTimeSlots: () => {},
+  createTimeSlots: () => {},
+};
+
+//file.js
+
+import { utils } from "./utils";
 ```
 
-> Will be
+**Alternative** 😎
 
 ```javascript
-  import { User } from '@scenes/Account/User';
-  import { THEME_COLOR } '@constants/theme';
-  import { getUser } '@services/userServices';
+import * as utils from "./utils";
 ```
 
-## 6. Boolean variables should begin from `is`
+- ### **Use module name wrapper enhance your import from other modules**
+
+**Instead of** 🤨
+
+```javascript
+import { User } from "../../../scenes/Account/User";
+import { THEME_COLOR } from "../../constants/theme";
+import { getUser } from "../services/userServices";
+```
+
+**You will have** 🥰
+
+```javascript
+import { User } from "@scenes/Account/User";
+import { THEME_COLOR } from "@constants/theme";
+import { getUser } from "@services/userServices";
+```
+
+## **Naming**
+
+- ### **Boolean variables or methods with boolean return value should start from `is`**
 
 ```javascript
 const isCompleted = true;
+const isValidUser = (user) => !!user;
 ```
 
-## 7. Code inside `if` statement should be as small as possible
+- ### **Constants should always be written in uppercase**
+
+```javascript
+const NEW_MODE = "New Mode";
+const GOOGLE_KEY = "1da541ac298";
+const IS_PRODUCTION = process.env.NODE_ENV === "production";
+```
+
+- ### **Creating several variables will make your code more readable**
+
+**Instead of** 🤨
+
+```javascript
+const result = (income - expenses) - income > expenses * 2 ? income * 0,25: 0;
+```
+
+**You will have** 🥰
+
+```javascript
+const value = income - expenses;
+const isUseTaxes = income > expenses * 2;
+const taxes = isUseTaxes ? income * 0,25 : 0;
+const result = value - taxes;
+```
+
+- ### **Using `object destruction` will readability a lot**
+
+**Instead of** 🤨
+
+```javascript
+setState({
+  account: `${response.user.name} ${response.user.surname}`,
+  photo: response.user.photo,
+  options: response.options,
+});
+```
+
+**You will have** 🥰
+
+```javascript
+const { user, options } = response;
+// two times if needed
+const { name, surname, photo } = user;
+
+setState({
+  account: `${name} ${surname}`,
+  photo,
+  options,
+});
+```
+
+- ### **Try to name arguments and use correct destructions to use object shortcuts**
+
+**Instead of** 🤨
+
+```javascript
+createUser = (params) => {
+  const { userName, photo } = api.request({ options: params });
+
+  return {
+    name: userName,
+    photo: photo,
+  };
+};
+```
+
+**You will have** 🥰
+
+```javascript
+createUser = (options) => {
+  const { userName: name, photo } = api.request({ options });
+
+  return {
+    name,
+    photo,
+  };
+};
+```
+
+## **Code Structure**
+
+- ### **Avoid code nesting and make `if` statement small**
+
+**Instead of** 🤨
+
+```javascript
+method = (isCompleted, options) => {
+  if (isCompleted) {
+    const params = format(options);
+    if (params.isCreated) {
+      return params.date;
+    }
+    /* ... */
+  }
+
+  return null;
+  /* ... */
+};
+```
+
+**You will have** 🥰
 
 ```javascript
 method = (isCompleted, options) => {
@@ -99,22 +243,26 @@ method = (isCompleted, options) => {
 };
 ```
 
-## 8. Use ternary if possible to do it in one line
+- ### **Ternary helps you to reduce code lines**
+
+**Instead of** 🤨
+
+```javascript
+if (isCompleted) {
+  return method();
+}
+return null;
+```
+
+**You will have** 🥰
 
 ```javascript
 return isCompleted ? method() : null;
 ```
 
-## 9. Move complex boolean calculation to variable
+- ### **Use object mapping instead of nesting `if`**
 
-```javascript
-const isUserValid = user && user.name;
-const isCompleted = isUserValid && status === 500 && !isLoading && !isError;
-```
-
-## 10. Use object mapping instead of nesting `if`
-
-> Instead of:
+**Instead of** 🤨
 
 ```javascript
 const response = await api.fetchData();
@@ -130,7 +278,7 @@ if (response.message === "error") {
 }
 ```
 
-> Use:
+**You will have** 🥰
 
 ```javascript
   const responseHandleMap = {
@@ -144,35 +292,7 @@ if (response.message === "error") {
 
 ```
 
-## 11. Always use `object destruction`
-
-```javascript
-const { user, options } = response;
-// two times if needed
-const { name, surname, photo } = user;
-```
-
-## 12. Name variables to fit object shortcut
-
-```javascript
-createUser = (options) => {
-  const { name, photo } = api.request({ options });
-
-  return {
-    name,
-    photo,
-  };
-};
-```
-
-## 13. Constant should always be written in uppercase
-
-```javascript
-const NEW_MODE = "New Mode";
-const GOOGLE_KEY = "123123123123";
-```
-
-## 14. Always extract string and number to constants (local or global)
+- ### **Always extract string and number to constants (local or global)**
 
 ```javascript
 export const strings = {
@@ -189,51 +309,21 @@ const { name, info } = strings.modal;
 createModal(name, info);
 ```
 
-## 15. Class method should be written with arrow functions
+- ### **Use `async/await` instead of `then/catch`**
+
+**Instead of** 🤨
 
 ```javascript
-class Api {
-  request = (options) => {
+getUserInfo()
+  .then(({ user, options }) => {
     /* ... */
-  };
-
-  getUser = () => {
-    return this.user;
-  };
-}
+  })
+  .catch((e) => {
+    /* ... */
+  });
 ```
 
-## 16. For helper functions prefer to use classes instead of several functions
-
-```javascript
-  class TimeSlotHelper {
-    formatTimeSlots = () => /* ... */
-    updateTimeSlots = () => /* ... */
-    createTimeSlots = () => /* ... */
-  }
-```
-
-## 17. Function and method should have correct name
-
-> Only return untouched something
-
-```javascript
-  getData = () => /* ... */
-```
-
-> Formatting something
-
-```javascript
-  formatData = () => /* ... */
-```
-
-> Than you can combine them
-
-```javascript
-const data = formatData(getData());
-```
-
-## 18. Use `async/await` instead of `.then`
+**You will have** 🥰
 
 ```javascript
 request = async () => {
