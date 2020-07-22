@@ -7,3 +7,4 @@
 ## Table of Contents
 
 1. [Main rules](clear-code.md)
+2. [Pattern](patter.md)
