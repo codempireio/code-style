@@ -1,6 +1,8 @@
 # Typings
 
-[Return to Table of Contents](../README.md)
+[Return to Table of Contents](../../README.md)
+
+[Return to Typescript](./README.md).
 
 ## 1. Types `any`, `array` and `object` not allowed
 
@@ -71,7 +73,7 @@ interface IData {
 }
 ```
 
-## 7. Use `?` when declaring noncertain types
+## 7. Use `?` when declaring uncertain types
 
 > Instead of
 
@@ -132,10 +134,20 @@ interface IService {
 }
 ```
 
-## 10. When using React always add typing for React Children
+## 10. When using React component use interface FC
 
 ```typescript
-interface IComponent {
-  children: ReactNode | ReactChild | ReactElement;
+import React, { FC }  from 'react';
+
+interface IComponentProps {
+  parameter: string;
+}
+
+const Component: FC<IComponentProps> = (props) => {
+  const {parameter, children} = props;
+
+  return (
+    //...
+  )
 }
 ```
