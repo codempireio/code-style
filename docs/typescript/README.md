@@ -1,6 +1,6 @@
 # React Ecosystem
 
-[Return to Table of Contents](../README.md).
+[Return to Table of Contents](../../README.md).
 
 > Tutorial with TypeScript code example
 

@@ -1,3 +1,15 @@
+# Clear code
+
+[Return to Table of Contents](../../README.md).
+
+[Return to Clear code](./README.md).
+
+## Table of Contents 🚀
+
+- [**Variables**](#Variables)
+- [**Function**](#Function)
+- [**Formatting**](#Formatting)
+
 ## Variables
 
 ### Use meaningful and meaningful names
@@ -336,62 +348,6 @@ function newRequestModule(url: string) {
 
 const req = newRequestModule;
 inventoryTracker("apples", req, "test-url");
-```
-
-## Asynchronous
-
-### Async / Await makes code cleaner than promises
-
-👎**Bad:**
-
-```ts
-requestPromise
-  .get(url)
-  .then((response) => fsPromise.writeFile("article.html", response))
-  .then(() => {
-    console.log("File written");
-  })
-  .catch((err) => {
-    console.error(err);
-  });
-```
-
-👍**Good:**
-
-```ts
-async function getCleanCodeArticle(url: string) {
-  try {
-    const response = await requestPromise.get(url);
-    await fsPromise.writeFile("article.html", response);
-    console.log("File written");
-  } catch (err) {
-    console.error(err);
-  }
-}
-```
-
-### Don't ignore trapped errors
-
-👎**Bad:**
-
-```ts
-try {
-  functionThatMightThrow();
-} catch (error) {
-  console.log(error);
-}
-```
-
-👍**Good:**
-
-```ts
-try {
-  functionThatMightThrow();
-} catch (error) {
-  console.error(error);
-  notifyUserOfError(error);
-  reportErrorToService(error);
-}
 ```
 
 ## Formatting

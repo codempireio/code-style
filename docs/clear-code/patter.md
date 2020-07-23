@@ -1,3 +1,9 @@
+# Patterns
+
+[Return to Table of Contents](../../README.md).
+
+[Return to Clear code](./README.md).
+
 **KISS - "Keep the code simple and stupid."**
 
 > _I think you are familiar with the concept of simple code. But what does "stupid" code mean? In my opinion, this is code that solves the problem using a minimum number of abstractions, while the nesting of these abstractions in each other is also minimal._

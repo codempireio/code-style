@@ -1,3 +1,9 @@
+# Partial
+
+[Return to Table of Contents](../../README.md).
+
+[Return to Typescript](./README.md).
+
 #### `Partial <T>` - constructs a type with all properties of `T` set to optional.
 
 **How it work?**

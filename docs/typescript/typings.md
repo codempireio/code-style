@@ -1,6 +1,8 @@
 # Typings
 
-[Return to Table of Contents](../README.md)
+[Return to Table of Contents](../../README.md)
+
+[Return to Typescript](./README.md).
 
 ## 1. Types `any`, `array` and `object` not allowed
 
