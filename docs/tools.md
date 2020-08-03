@@ -28,9 +28,65 @@
 }
 ```
 
-### - TSLint
+### - ESLint
 
-[TSLint is an extensible static analysis tool that checks TypeScript code for readability, maintainability, and functionality errors.](https://www.npmjs.com/package/tslint)
+[ESLint is an extensible static analysis tool that checks TypeScript code for readability, maintainability, and functionality errors.](https://www.npmjs.com/package/eslint)
+
+1. Here you can see main rules from ESLint, but React Native and other libraries need additional parameters. So, copy these parameters to your .eslintrc file.
+
+```json
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "tsconfig.json",
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugins": ["react", "@typescript-eslint"],
+  "extends": [
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended"
+  ],
+  "root": true,
+  "env": {
+    "node": true
+  },
+  "rules": {
+    "no-shadow": "error",
+    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "curly": "error",
+    "react/prop-types": "off",
+    "react/display-name": "off",
+    "@typescript-eslint/interface-name-prefix": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+
+    "default-case": "error", //require `default` cases in `switch` statements
+    "no-alert": "error", //Disallow Use of  alert, confirm, and prompt
+    "no-empty-function": "error" //Disallow empty functions
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
+```
+
+2. In Setting found setting.json add this fields to end.
+
+```json
+  "editor.formatOnSave": true,
+  "editor.rulers": [80],
+  "eslint.workingDirectories": [
+    {
+      "mode": "auto"
+    }
+  ],
+```
 
 ### - Pre-commit hook tools
 
@@ -55,6 +111,46 @@
       "git add"
     ]
   }
+```
+
+### Import auto sorter(Test setting version)
+
+This tool automatically sort import to code-style rules(**Main part of import!**) after save file.
+
+1. Install this [extension](https://marketplace.visualstudio.com/items?itemName=mike-co.import-sorter).
+2. In Setting find > setting.json and add to end this JSON.
+
+```json
+  "importSorter.generalConfiguration.sortOnBeforeSave": true,
+  "importSorter.importStringConfiguration.tabSize": 2,
+  "importSorter.sortConfiguration.customOrderingRules.defaultNumberOfEmptyLinesAfterGroup": 1,
+  "importSorter.importStringConfiguration.maximumNumberOfImportExpressionsPerLine.count": 80,
+  "importSorter.sortConfiguration.customOrderingRules.rules": [
+    {
+      "regex": "^.?(screens|components).*(?<!.api|.utils|.state|.reducer|.actions|.constants|.strings|.typings|.styles|.controller|.service|.module)$",
+      "orderLevel": 20
+    },
+    {
+      "regex": "^.?services|.*.api$|.utils$|.state$|.reducer$|.actions$",
+      "orderLevel": 30
+    },
+    {
+      "regex": "^.?constants|.constants$|.strings$",
+      "orderLevel": 40
+    },
+    {
+      "regex": "^.?typings|.typings$",
+      "orderLevel": 50
+    },
+    {
+      "regex": "^.?styles|.?styles$|^themes$",
+      "orderLevel": 60
+    },
+    {
+      "regex": "^((?!(/|themes|theme)).)*$|(^@nestjs)",
+      "orderLevel": 10
+    }
+  ],
 ```
 
 ### - axios
