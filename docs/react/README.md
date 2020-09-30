@@ -1,6 +1,6 @@
 # React Ecosystem
 
-[Return to Table of Contents](../README.md).
+[Return to Table of Contents](../../README.md).
 
 > There're our rules that we are using when working with react library and it's ecosystem
 

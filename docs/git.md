@@ -52,7 +52,7 @@
 1. Repeat branch name to commit message. In this case commits should be very short and change only named part of project. Examples: `feature/date-picker`, `bugfix/time-slot-crash`, `feature/navigation-setup`
 2. Create clear commit message which will explain more clear what was changed. Should be written in past tense. Examples: `Added datepicker to user panel`, `Fixed user session problem on ios`, `Updated profile screen layout`
 
-## **Pull Request** 🙌
+## **Pull Request**
 
 ### **Check List**
 

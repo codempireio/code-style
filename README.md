@@ -11,8 +11,8 @@ Made by [Codempire](http://codempire.io/)
 2. [**React**](docs/react/README.md)
 3. [**Typescript**](docs/typings.md)
 4. [**Development**](docs/development.md)
-5. [**Tools**](docs/tools.md)
-6. [**Git Flow**](docs/git.md)
+5. [**Git Flow**](docs/git.md)
+6. [**AWS Guide**](docs/aws.md)
 
 ## Contact Us 😏
 
