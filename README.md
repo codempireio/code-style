@@ -13,6 +13,7 @@ Made by [Codempire](http://codempire.io/)
 4. [**Development**](docs/development.md)
 5. [**Git Flow**](docs/git.md)
 6. [**AWS Guide**](docs/aws.md)
+6. [**React Native Module (Android)**](docs/rn-module-android.md)
 
 ## Contact Us 😏
 
