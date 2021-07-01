@@ -61,7 +61,7 @@
 
 ### `src/screens`
 
-> Feature folder that contains all files according to - components, constants, typings, api, strings, redux info (reducers, actions, saga) etc.
+> Feature folder that contains all files according to - components, constants, typings, api, Redux part (reducers, actions, saga) etc.
 > `index.ts` file inside each folder is using as an export point. We should import files only from it.
 
 ```
@@ -73,6 +73,7 @@
         /footer
           footer.tsx
           footer.styles.ts
+          footer.test.tsx
           index.ts
         home.tsx
         home.actions.ts
@@ -80,7 +81,8 @@
         home.constants.ts
         home.reducer.ts
         home.state.ts
-        home.strings.ts
+        home.styles.ts
+        home.test.tsx
         home.typing.ts
         index.ts
       /auth
@@ -89,7 +91,7 @@
 
 ### `src/components`
 
-> Components (with local constants, typings) that are shared over several screens;
+> Components (with local constants, typings) that are shared over several screens, always without redux or api;
 
 ```
    /components
@@ -97,7 +99,6 @@
         modal.tsx
         modal.test.tsx
         modal.constants.ts
-        modal.strings.ts
         index.ts
       /spinner
       text.tsx
@@ -113,7 +114,7 @@
       routes.ts
       env.ts
       config.ts
-      icons.ts
+      images.ts
 ```
 
 ### `src/services`
@@ -211,9 +212,6 @@ export const DATE_FORMAT = "dddd Do MMMM";
 export const DATE_YEAR_FORMAT = "dddd Do MMMM, YYYY";
 ```
 
-### `locales/` folder
-
-> here you can keep your project string in different locales (en.ts, ar.ts, fr.ts) or single languages string that you can easily update during development
 
 ### `images.ts`
 
@@ -224,6 +222,10 @@ export const images = {
   logo: require("../assets/images/logo.png"),
   background: require("../assets/images/background.png"),
 };
+
+export const icons = {
+  user: require("../assets/icons/user.svg"),
+}
 ```
 
 ### `routes.ts`

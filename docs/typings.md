@@ -2,19 +2,9 @@
 
 [Return to Table of Contents](../README.md)
 
-## 1. Types `any`, `array` and `object` not allowed
+### Types `any`, `array` and `object` not allowed
 
-## 2. All interface should start from I and types from T
-
-```typescript
-  interface IData {
-    /* ... */
-  }
-
-  type TField = /* ... */
-```
-
-## 3. Always use interface for object and types for one-line
+#### Always use interface for object and types for one-line
 
 ```typescript
 interface IUser {
@@ -26,7 +16,7 @@ interface IUser {
 type TAnswer = "Yes" | "No";
 ```
 
-## 4. Class or Component interface should contain its name
+### Class or Component interface should contain its name
 
 ```typescript
 interface IApiService {
@@ -38,7 +28,7 @@ class ApiService implements IApiService {
 }
 ```
 
-## 5. Always use interface `extends` if possible
+### Always use interface `extends` if possible
 
 ```typescript
 interface IData {
@@ -51,7 +41,7 @@ interface IAdmin extends IData {
 }
 ```
 
-## 6. Specify type values if it's predefined
+### Specify type values if it's predefined
 
 > Instead of
 
@@ -64,14 +54,12 @@ interface IData {
 > Use
 
 ```typescript
-type TLevel = 1 | 2;
-
 interface IData {
-  level: TLevel;
+  level: 1 | 2;
 }
 ```
 
-## 7. Use `?` when declaring noncertain types
+### Use `?` when declaring non-certain types
 
 > Instead of
 
@@ -89,29 +77,14 @@ interface IData {
 }
 ```
 
-## 8. Always use `private`, `public` and `protected` in class or component
-
-```typescript
-class Api {
-  public getUser = () => {
-    const token = this.getToken();
-    /* ... */
-  };
-
-  private getToken = () => {
-    /* ... */
-  };
-}
-```
-
-## 7. Create `typings` folder for storing common types and `typing.ts` file for extraction local types
+### Create `typings` folder for storing common types and `typing.ts` file for extraction local types
 
 ```typescript
 import { ICommonData } from "@typings/data";
 import { ILocalInfo } from "./typings";
 ```
 
-## 8. Create `global.d.ts` file if you need to override library types or create types for an untyped module
+### Create `global.d.ts` file if you need to override library types or create types for an untyped module
 
 ```typescript
 declare module "data" {
@@ -122,9 +95,12 @@ declare module "data" {
 
   export function parseData(options: IPayload): void;
 }
+
+// for fonts
+declare module "*.ttf";
 ```
 
-## 9. Type annotation should be on the top of the file
+### Type annotation should be on the top of the file
 
 ```typescript
 interface IService {
@@ -132,10 +108,40 @@ interface IService {
 }
 ```
 
-## 10. When using React always add typing for React Children
+### Don't forget about `Record` and `Partial`
+
+> `Record` works good with object typings
 
 ```typescript
-interface IComponent {
-  children: ReactNode | ReactChild | ReactElement;
+const hashMap: Record<string, string> = {
+  name: "John",
+  surname: "Dou",
+  photoUrl: "...",
+};
+```
+
+> Also could be used for strict object validation
+
+```typescript
+const hashMap: Record<'name' | 'surname' | 'photoUrl', string> = {
+  name: "John",
+  surname: "Dou",
+  photoUrl: "...",
+};
+```
+
+> `Partial` will help you with typization of big objects
+
+```typescript
+interface BigObject {
+  getName(): string;
+  getInfo(): Promise<Data>;
+  name: string;
+  photo: string;
 }
+
+const smallPart: Partial<BigObject> = {
+  name: "John",
+  photo: "...",
+};
 ```

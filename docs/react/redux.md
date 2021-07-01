@@ -4,6 +4,8 @@
 
 [Return to React](README.md)
 
+## Always prefer local state instead of using redux to enhance performance and code readability
+
 ## Extract complex logic from reducer to helper or middleware
 
 > Instead of

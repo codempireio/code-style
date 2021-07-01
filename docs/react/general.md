@@ -28,35 +28,46 @@
   <Button onClick={this.method} />
 ```
 
-## Create styled objects when working with styled-components
+## Use import * as for styled-components
 
 > component.styles.ts
 
 ```javascript
 import styled from "styled-components";
 
-export const ComponentStyled = {
-  Wrapper: styled.div`
+export const Wrapper = styled.div`
     display: flex;
-  `,
-  Modal: styled.div`
+  `;
+
+  export const Modal = styled.div`
     width: 240px;
     height: 250px;
-  `,
-  Text: styled.p`
+  `;
+  export const Text=  styled.p`
     font-size: 16px;
   `,
 };
 ```
 
-## Use Pure Component or Stateless Component if possible
+> component.ts
 
 ```javascript
-export class Home extends PureComponent {
-  /* ... */
-}
+  import * as Styled from './component.styles.ts';
 
-export const User = (props) => <User {...props} />;
+
+  /* ... */
+
+  <Styled.Wrapper>
+    <Styled.Modal>
+      <Styled.Text/>
+    </Styled.Modal>
+  </Styled.Wrapper>
+```
+
+## Always prefer function component
+
+```javascript
+export const User = (props) => <div {...props} />;
 ```
 
 ## Divide complex render function to several functions or move it to another components
@@ -82,80 +93,6 @@ render () {
     <UserList users={data.users} />
     <Info currentUser={this.currentUser()} />
   </Component>
-}
-```
-
-## Extract complex logic from Component to another modules
-
-> Instead of
-
-```javascript
-componentDidMount () {
-  fetch('url').then( () => {
-    /* ... */
-  });
-  /* ... */
-}
-```
-
-> Use
-
-```javascript
-import { api } from '@services/api';
-
-/* ... */
-
-componentDidMount () {
-  this.getData()
-}
-
-getData = async () => {
-  const data = await api.getData
-  /* ... */
-}
-```
-
-## Use constructor only for assigning props to state
-
-> Instead of
-
-```javascript
-class Component extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isOpen: false,
-    };
-
-    this.onClick = this.onClick.bind(this);
-  }
-}
-```
-
-> Use
-
-```javascript
-class Component extends React.Component {
-  state = {
-    isOpen: false,
-  };
-
-  onClick = () => {
-    /* ... */
-  };
-}
-```
-
-> as an excepting
-
-```javascript
-class Component extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isOpen: props.isOpened,
-    };
-  }
 }
 ```
 
@@ -190,5 +127,3 @@ const onChangeText = (text: string) => {
   props.onUpdateUser(text, props.option);
 };
 ```
-
-

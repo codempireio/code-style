@@ -10,7 +10,82 @@
 
 ## **Modules**
 
-- ### **Follow next import order**
+- ### **Don't use default export**
+
+> Default export allows confusions in codebase
+> To avoid this don't use it
+
+```javascript
+import { HomeApi } from "./home.api";
+```
+
+- ### **Use `index` for export module parts to another**
+
+**Instead of** 🤨
+
+```javascript
+import { homeActions } from "../../home/home-utils/home.actions";
+import { routeUtils } from "../../../utils/route.utils";
+
+import { homeTypes } from "../../home/home.typings";
+```
+
+**You will have** 🥰
+
+```javascript
+import { homeActions, homeTypes } from "../../home";
+import { routeUtils } from "../../../utils";
+```
+
+- ### **Use `import as` for utils/api functions to have one import item**
+
+```javascript
+// utils.js
+const privateFunction = () => {};
+export const formatTimeSlots = () => {};
+export const updateTimeSlots = () => {};
+export const createTimeSlots = () => {};
+```
+
+**Instead of** 🤨
+
+```javascript
+//file.js
+import { formatTimeSlots, createTimeSlots, updateTimeSlots } from "./utils";
+```
+
+**You will have** 🥰
+
+```javascript
+//file.js
+import * as utils from "./utils";
+```
+
+- ### **Use module name wrapper enhance your import from other modules**
+
+**Instead of** 🤨
+
+```javascript
+import { User } from "../../../scenes/Account/User";
+import { THEME_COLOR } from "../../constants/theme";
+import { getUser } from "../services/userServices";
+```
+
+**You will have** 🥰
+
+```javascript
+import { User } from "scenes/Account/User";
+import { THEME_COLOR } from "constants/theme";
+import { getUser } from "services/userServices";
+
+// or with special import symbol
+
+import { User } from "@scenes/Account/User";
+import { THEME_COLOR } from "@constants/theme";
+import { getUser } from "@services/userServices";
+```
+
+- ### **Try to keep import order**
 
 > This spaces allow you quicker understand what files use your module
 
@@ -34,95 +109,29 @@ import { ISendMessageResponse } from "../services/api/typings";
 import "./scenes/Home.css";
 ```
 
-- ### **Don't use default export**
-
-> Default export allows confusions in codebase
-> To avoid this don't use it
-
-```javascript
-import { HomeApi } from "./home.api";
-```
-
-- ### **Use `index.js` for export module parts to another**
-
-**Instead of** 🤨
-
-```javascript
-import { homeActions } from "../../home/home-utils/home.actions";
-import { routeUtils } from "../../../utils/route.utils";
-
-import { homeTypes } from "../../home/home.typings";
-```
-
-**You will have** 🥰
-
-```javascript
-import { homeActions, homeTypes } from "../../home";
-import { routeUtils } from "../../../utils";
-```
-
-> Put everything that you want to share to index.js
-
-```javascript
-export * from "./home";
-export { homeActions } from "./home-utils/home-actions";
-```
-
-- ### **Combine utils/api functions under one object**
-
-**Instead of** 🤨
-
-```javascript
-// utils.js
-const formatTimeSlots = () => {};
-const updateTimeSlots = () => {};
-const createTimeSlots = () => {};
-
-//file.js
-
-import { formatTimeSlots, createTimeSlots, updateTimeSlots } from "./utils";
-```
-
-**You will have** 🥰
-
-```javascript
-// utils.js
-const utils = {
-  formatTimeSlots: () => {},
-  updateTimeSlots: () => {},
-  createTimeSlots: () => {},
-};
-
-//file.js
-
-import { utils } from "./utils";
-```
-
-**Alternative** 😎
-
-```javascript
-import * as utils from "./utils";
-```
-
-- ### **Use module name wrapper enhance your import from other modules**
-
-**Instead of** 🤨
-
-```javascript
-import { User } from "../../../scenes/Account/User";
-import { THEME_COLOR } from "../../constants/theme";
-import { getUser } from "../services/userServices";
-```
-
-**You will have** 🥰
-
-```javascript
-import { User } from "@scenes/Account/User";
-import { THEME_COLOR } from "@constants/theme";
-import { getUser } from "@services/userServices";
-```
-
 ## **Naming**
+
+- ### **Don't use primitive naming**
+
+**Instead of** 🤨
+
+```javascript
+members.map((el, k) => {
+  el.friends.forEach((el2) => {
+    /* ... */
+  });
+});
+```
+
+**You will have** 🥰
+
+```javascript
+members.map((member, index) => {
+  member.friends.forEach((user) => {
+    /* ... */
+  });
+});
+```
 
 - ### **Boolean variables or methods with boolean return value should start from `is`**
 
@@ -260,7 +269,41 @@ return null;
 return isCompleted ? method() : null;
 ```
 
-- ### **Use object mapping instead of nesting `if`**
+- ### **Avoid tricky ternaries**
+
+**Instead of** 🤨
+
+```javascript
+method = (count) => {
+  count === 2 ? someFunction() : null;
+  /* ... */
+};
+
+// and
+
+const code =
+  count === 3 ? (getPreviousCode() === 2 ? (!isOversize ? null : 4) : 5) : 3;
+```
+
+**You will have** 🥰
+
+```javascript
+method = (count) => {
+  if (count === 2) {
+    someFunction();
+  }
+  /* ... */
+};
+
+// and
+
+const oversizeValue = !isOversize ? null : 4;
+const previousValue = getPreviousCode() === 2 ? oversizeValue : 5;
+
+const code = count === 3 ? previousValue : 3;
+```
+
+- ### **Use object mapping or switch/case instead of nesting `if`**
 
 **Instead of** 🤨
 
@@ -292,21 +335,19 @@ if (response.message === "error") {
 
 ```
 
-- ### **Always extract string and number to constants (local or global)**
+**Good Alternative** 😏
 
 ```javascript
-export const strings = {
-  modal: {
-    name: "Save Data",
-    info: "Do you ...?",
-  },
-};
+const response = await api.fetchData();
 
-/* ... */
-import { strings } from "@constants/strings";
-
-const { name, info } = strings.modal;
-createModal(name, info);
+switch (response) {
+  case "saved":
+  /* ... */
+  case "updated":
+  /* ... */
+  case "error":
+  /* ... */
+}
 ```
 
 - ### **Use `async/await` instead of `then/catch`**
