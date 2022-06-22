@@ -8,6 +8,10 @@
 
 ## State hook
 
+> As useState hook use `Object.is` to compare, it needs to pass new data everytime
+>
+> So each hook should contain one state. If state uses as object, every change of the field, will trigger re-render of all components that depends on that state, so only if it used by one component at the time, then it make sense to use object.
+>
 > Regular useState approach will have next look
 
 ### `component.state.ts`
@@ -20,28 +24,29 @@ import { formatUser, handleError } from './component.utils';
 
 import { IUser } from './component.typings';
 
-// typing for our hook state data
+// Typing for our hook state data
 interface IComponentStateData {
   users: IUser[];
-  selectedUser: IUser | null;
-  error: string
   isLoading: boolean
 }
 
-// typing for all our hook
+// Typing for our hook return values
 interface IComponentState extends IComponentStateData {
+  error: string;
+  selectedUser: IUser;
   onSelectUser: (user: IUser) => void;
 }
 
 const initialState = {
   users: [];
-  selectedUser: null;
-  error: '',
   isLoading: true,
 }
 
+// Custom hook
 export const useComponentState = (id: string): IComponentState => {
   const [state, setState] = useState<IComponentStateData>(initialState);
+  const [selectedUser, setSelectedUser] = useState<IUser | null>(null);
+  const [error, setError] = useState<string>('');
 
   // Using instead componentDidMount
   useEffect(() => {
@@ -49,14 +54,15 @@ export const useComponentState = (id: string): IComponentState => {
       try {
         const users = await fetchData(id);
 
+        // Every setState we pass new object
         setState(currentState => ({
-          ...currentState,
+          ...currentState, // Just as example how to save previous state
           users: formatUsers(users),
           isLoading: false,
         }))
       } catch (e) {
+        // As it update every field on state, no need to pass previous one
         setState(currentState => ({
-          ...currentState,
           error: handleError(e),
           isLoading: false,
         }))
@@ -67,17 +73,16 @@ export const useComponentState = (id: string): IComponentState => {
   }, []);
 
 
-  // regular method that we can use for onClick
+  // Regular method that we can use for onClick
   const onSelectUser = (selectedUser: IUser) => {
-    setState(currentState => ({
-      ...currentState,
-      selectedUser,
-    }))
+    setSelectedUser(selectedUser)
   }
 
-  // returning data and needed method from hook
+  // Returning data and needed method from hook
   return {
     ...state,
+    error,
+    selectedUser,
     onSelectUser
   }
 }
