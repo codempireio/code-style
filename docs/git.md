@@ -45,6 +45,24 @@
 
 `production/what-deploying` - developer branch from `master` to `production` where will be set of several commits which we need to deploy to any environment such as *production*, *test*, *stage*, etc.
 
+### **Switching branches**
+
+Git 2.23 introduced new command, called `switch` and it's preferable way to work with branches.
+
+To create branch:
+
+```
+   git switch -c branch_name
+```
+
+or just switch to already existing
+
+```
+   git switch branch
+```
+
+The reason of this, is that community wants to separate out the functionalities from of the overloaded `checkout` command and it's a try to scaleback responsibilities without breaking backward compability
+
 ### **Commits**
 
 > Usually we're using 2 approaches for commit message
