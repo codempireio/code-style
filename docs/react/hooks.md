@@ -115,3 +115,33 @@ export const Component = (props: IComponent) => {
   /* ... */
 };
 ```
+
+### Avoid using self-invoking functions
+
+_useEffect_ doesn't expect the callback to return promise, that's the reason why it's not allowed to make async useEffect.
+And solution to this, is create async / await functions. It can be done in different ways, but the one, which you need to avoid is creating self-invoking functions, better create functions inside hook or outside and just call it in _useEffect_:
+
+**Bad example**
+
+```typescript
+useEffect(() => {
+  (async () => {
+    const variable_name = await doSomething();
+  })();
+}, []);
+```
+
+**Preferable way**
+
+```typescript
+const doSomething = async () => {
+  const variable_name = await request();
+  setState(variable_name);
+};
+
+useEffect(() => {
+  doSomething();
+}, []);
+```
+
+It works identically, but reads better and looks cleaner, if needed, we can reuse that functions later, for example in another hook.
